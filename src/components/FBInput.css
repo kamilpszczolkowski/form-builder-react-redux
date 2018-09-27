@@ -1,0 +1,39 @@
+.fbInput {
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 10px;
+    overflow: auto;
+    margin: 10px;
+}
+
+.inputQuestion {
+    float: right;
+    width: 75%;
+    height: 40px;
+    margin: 5px;
+    padding: 3px
+}
+
+.question {
+    display: flex;
+    float: left;
+    width: 15%;
+    height: 40px;
+    align-items: center;
+    margin: 5px;
+}
+
+.deleteBttn {
+    padding: 8px;
+    background: grey;
+    border: 1px solid transparent;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.deleteBttn:hover {
+    background: black;
+}

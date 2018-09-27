@@ -1,4 +1,19 @@
-h1 {
-    margin: 15px;
-    text-align: center;
+
+#add_input_bttn {
+    cursor: pointer;
+    background: cornflowerblue;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    display: block;
+    margin: 10px auto;
+    width: 60%;
+    padding: 10px;
+    transition: 0.5s;
+}
+
+#add_input_bttn:hover {
+    background: blue;
 }
