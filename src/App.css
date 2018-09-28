@@ -24,3 +24,11 @@ h2 {
     margin: 15px;
     text-align: center;
 }
+
+.fbInput {
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 10px;
+    overflow: auto;
+    margin: 10px;
+}

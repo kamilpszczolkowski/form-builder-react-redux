@@ -1,11 +1,3 @@
-.fbInput {
-    border: 1px solid grey;
-    border-radius: 5px;
-    padding: 10px;
-    overflow: auto;
-    margin: 10px;
-}
-
 .inputQuestion {
     float: right;
     width: 75%;
@@ -32,8 +24,43 @@
     border-radius: 5px;
     cursor: pointer;
     transition: 0.5s;
+    margin: 10px 5px 0px 5px;
 }
 
 .deleteBttn:hover {
     background: black;
+}
+
+.subInputBttn {
+    padding: 8px;
+    background: cornflowerblue;
+    border: 1px solid transparent;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.5s;
+    margin: 10px 5px 0px 0px;
+}
+
+.subInputBttn:hover {
+    background: blue;
+}
+
+
+.inputCondition {
+    float: left;
+    width: 35%;
+    height: 40px;
+    margin: 5px;
+    padding: 3px
+}
+
+.question_condition {
+    display: flex;
+    float: left;
+    width: 22%;
+    height: 40px;
+    align-items: center;
+    margin: 5px;
 }

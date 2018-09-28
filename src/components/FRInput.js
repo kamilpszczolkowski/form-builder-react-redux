@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { FRSubInput } from "./FRSubInput";
 import "./FRInput.css";
 
 export class FRInput extends Component {
@@ -54,11 +55,26 @@ export class FRInput extends Component {
   }
 
   render() {
-    const { object } = this.props;
+    const { object, updateFunction, connectedDb } = this.props;
     return (
-      <div className="frInput">
-        <span className="frQuestion">{object.question}</span>
-        {this.inputTypeHelperFunc()}
+      <div>
+        <div className="frInput">
+          <span className="frQuestion">{object.question}</span>
+          {this.inputTypeHelperFunc()}
+        </div>
+        {object.subinputs.map(subinput => {
+          return (
+            <FRSubInput
+              key={subinput.id}
+              object={subinput}
+              updateFunction={updateFunction}
+              connectedDb={connectedDb}
+              parentType={object.type}
+              parent={object}
+              origin={object}
+            />
+          );
+        })}
       </div>
     );
   }
