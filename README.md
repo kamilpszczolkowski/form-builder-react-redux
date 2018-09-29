@@ -30,7 +30,7 @@ and 'npm start' to run application on localhost server. It will start most likel
 I've made this application as a recruitment task - it was the opportuninity to practice my
 skills and to challenge myself by finding quick solutions for specific tasks. 
 
-I decided to use JavaScript React - I'm very familliar to this framework and I could easly start to code.
+I decided to use JavaScript React - I'm very familliar with this framework and I could easly start to code.
 This application required to create recursive data structures - react components could fit 
 to this role very easily. 
 
@@ -38,7 +38,7 @@ I also used Redux in my application - I created a store with important data, whi
 immutable and can be easily avaliable to connected components (containers). 
 
 I used indexedDB to store data - this application has no backend and I wanted to store 
-data at least locally (and of course that was the requirement in wireframe i've got). 
+data at least locally (and of course that was the requirement in wireframe I've got). 
 Application connects to the db and populates it's state with the content.
 
 I used Webpack mostly for babel loader which allowed me to use newest ES features in my
@@ -50,7 +50,7 @@ site to spill when it's to narrow.
 
 # File structure
 
-Entire project consist mostly of src folder - there were no need to build the site, only to
+Entire project consist mostly of src folder - there was no need to build the site, only to
 run it locally. Src folder structure is listed below:
 *   components - all application compomnents which are not conneted to the redux store,
 *   containers - 'smart' components containing main parts of application, which are connected to the redux store and distribute data from it,

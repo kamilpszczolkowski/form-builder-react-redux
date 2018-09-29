@@ -111,10 +111,10 @@ export class FormService {
       return parent.value === object.conditionValue;
     }
     if (object.condition === "equals") {
-      return parent.value === object.conditionValue;
+      return Number(parent.value) === Number(object.conditionValue);
     } else if (object.condition === "greater") {
-      return parent.value > object.conditionValue;
+      return Number(parent.value) > Number(object.conditionValue);
     }
-    return parent.value < object.conditionValue;
+    return Number(parent.value) < Number(object.conditionValue);
   };
 }
