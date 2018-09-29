@@ -1,7 +1,7 @@
 # Form-builder-react-redux
 This application is a tool allowing users to build their own, custom forms.
 
-#General description
+# General description
 
 User starts to build his form from base inputs - there are three to choose:
 -   text input - standard text input type.
@@ -20,12 +20,12 @@ will be visible. Criteria depends on parent type:
 When user configures the form, it's result is instantly generated on the other side of
 the page. It can be tested instantly.
 
-#Installation
+# Installation
 
 Application can be easily started by using commands 'npm install' to instal the node_modules
 and 'npm start' to run application on localhost server. It will start most likely on 8080 port.
 
-#Purpouse and technology
+# Purpouse and technology
 
 I've made this application as a recruitment task - it was the opportuninity to practice my
 skills and to challenge myself by finding quick solutions for specific tasks. 
@@ -48,7 +48,7 @@ Site should behave responsively and look good even on phones - I used specific m
 for that, although I didn't have to much time to test it. I simply didn't want for entire
 site to spill when it's to narrow.
 
-#File structure
+# File structure
 
 Entire project consist mostly of src folder - there were no need to build the site, only to
 run it locally. Src folder structure is listed below:
@@ -57,7 +57,7 @@ run it locally. Src folder structure is listed below:
 *   services - files with logic divided to the specific part of application,
 *   store - everything about redux: actions file with action creators, actionTypes file and reducer  file.
 
-#Application preview
+# Application preview
 
 Below there is a small example of form with few inputs and subinputs configured.
 
