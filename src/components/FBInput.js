@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { FormService } from "../services/FormService";
 import { FBSubInput } from "./FBSubInput";
-import "./FBInput.css";
 
 export class FBInput extends Component {
   handleInputChange(event) {
@@ -25,9 +24,13 @@ export class FBInput extends Component {
 
   handleCreateSubinputClick() {
     const { updateFunction, connectedDb, object } = this.props;
-      updateFunction(connectedDb, {
+    updateFunction(connectedDb, {
       ...object,
-      subinputs: FormService.createFirstSubinput(object.subinputs, object.id, object.type)
+      subinputs: FormService.createFirstSubinput(
+        object.subinputs,
+        object.id,
+        object.type
+      )
     });
   }
 
@@ -37,25 +40,29 @@ export class FBInput extends Component {
     return (
       <div>
         <div className="fbInput">
-          <span className="question">Question:</span>
-          <input
-            name="question"
-            className="inputQuestion"
-            type="text"
-            value={question}
-            onChange={this.handleInputChange.bind(this)}
-          />
-          <span className="question">Type:</span>
-          <select
-            className="inputQuestion"
-            name="type"
-            value={type}
-            onChange={this.handleSelectChange.bind(this)}
-          >
-            <option value="text">Text</option>
-            <option value="yes_no">Yes or No</option>
-            <option value="number">Number</option>
-          </select>
+          <label>
+            <span className="question">Question:</span>
+            <input
+              name="question"
+              className="inputQuestion"
+              type="text"
+              value={question}
+              onChange={this.handleInputChange.bind(this)}
+            />
+          </label>
+          <label>
+            <span className="question">Type:</span>
+            <select
+              className="inputQuestion"
+              name="type"
+              value={type}
+              onChange={this.handleSelectChange.bind(this)}
+            >
+              <option value="text">Text</option>
+              <option value="yes_no">Yes or No</option>
+              <option value="number">Number</option>
+            </select>
+          </label>
           <button
             type="button"
             className="subInputBttn"
@@ -71,16 +78,18 @@ export class FBInput extends Component {
             Delete
           </button>
         </div>
-          {subinputs.map(subinput => {
-              return <FBSubInput
-                  key={subinput.id}
-                  object={subinput}
-                  updateFunction={updateFunction}
-                  connectedDb={connectedDb}
-                  parentType={type}
-                  parent={object}
-              />
-          })}
+        {subinputs.map(subinput => {
+          return (
+            <FBSubInput
+              key={subinput.id}
+              object={subinput}
+              updateFunction={updateFunction}
+              connectedDb={connectedDb}
+              parentType={type}
+              parent={object}
+            />
+          );
+        })}
       </div>
     );
   }

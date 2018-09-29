@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { FRSubInput } from "./FRSubInput";
-import "./FRInput.css";
 
 export class FRInput extends Component {
   handleInputChange(event) {
@@ -57,10 +56,12 @@ export class FRInput extends Component {
   render() {
     const { object, updateFunction, connectedDb } = this.props;
     return (
-      <div>
+      <div className="frOneSection">
         <div className="frInput">
-          <span className="frQuestion">{object.question}</span>
-          {this.inputTypeHelperFunc()}
+          <label>
+            <span className="frQuestion">{object.question}</span>
+            {this.inputTypeHelperFunc()}
+          </label>
         </div>
         {object.subinputs.map(subinput => {
           return (

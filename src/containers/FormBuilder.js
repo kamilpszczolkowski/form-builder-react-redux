@@ -8,7 +8,6 @@ import {
 } from "../store/inputs/actions";
 import * as inputsSelectors from "../store/inputs/reducer";
 import { FBInput } from "../components/FBInput";
-import "./FormBuilder.css";
 
 class FormBuilder extends Component {
   componentDidMount() {

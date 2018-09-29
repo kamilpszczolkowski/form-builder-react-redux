@@ -7,7 +7,7 @@ const initialState = {
 
 export function inputsReducer(state = initialState, action = {}) {
   switch (action.type) {
-    case types.OPEN_DATABASE:
+    case types.DATABASE_OPENED:
       return {
         ...state,
         dbConnected: action.payload.db,

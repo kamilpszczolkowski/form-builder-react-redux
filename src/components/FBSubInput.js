@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { FormService } from "../services/FormService";
-import "./FBSubInput.css";
 
 export class FBSubInput extends Component {
   handleChange(type, event) {
@@ -46,7 +45,7 @@ export class FBSubInput extends Component {
           </select>
           <input
             name="condition"
-            className="inputCondition"
+            className="inputConditionVal"
             type="text"
             value={object.conditionValue}
             onChange={event => this.handleChange("conditionValue", event)}
@@ -65,7 +64,7 @@ export class FBSubInput extends Component {
             <option value="equals">Equals</option>
           </select>
           <select
-            className="inputCondition"
+            className="inputConditionVal"
             name="type"
             value={object.conditionValue}
             onChange={event => this.handleChange("conditionValue", event)}
@@ -77,7 +76,7 @@ export class FBSubInput extends Component {
       );
     }
     return (
-      <div>
+      <div className="conditionContainer">
         <select
           className="inputCondition"
           name="type"
@@ -90,7 +89,7 @@ export class FBSubInput extends Component {
         </select>
         <input
           name="condition"
-          className="inputCondition"
+          className="inputConditionVal"
           type="number"
           value={object.conditionValue}
           onChange={event => this.handleChange("conditionValue", event)}
@@ -100,32 +99,38 @@ export class FBSubInput extends Component {
   }
 
   render() {
-    const { question, type, subinputs} = this.props.object;
+    const { question, type, subinputs } = this.props.object;
     const { updateFunction, connectedDb, parent } = this.props;
     return (
       <div className="biggerMarginLeft">
         <div className="fbInput">
-          <span className="question_condition">Condition:</span>
-          {this.conditionHelperFunc()}
-          <span className="question">Question:</span>
-          <input
-            name="question"
-            className="inputQuestion"
-            type="text"
-            value={question}
-            onChange={event => this.handleChange("question", event)}
-          />
-          <span className="question">Type:</span>
-          <select
-            className="inputQuestion"
-            name="type"
-            value={type}
-            onChange={event => this.handleChange("type", event)}
-          >
-            <option value="text">Text</option>
-            <option value="yes_no">Yes or No</option>
-            <option value="number">Number</option>
-          </select>
+          <label>
+            <span className="question">Condition:</span>
+            {this.conditionHelperFunc()}
+          </label>
+          <label>
+            <span className="question">Question:</span>
+            <input
+              name="question"
+              className="inputQuestion"
+              type="text"
+              value={question}
+              onChange={event => this.handleChange("question", event)}
+            />
+          </label>
+          <label>
+            <span className="question">Type:</span>
+            <select
+              className="inputQuestion"
+              name="type"
+              value={type}
+              onChange={event => this.handleChange("type", event)}
+            >
+              <option value="text">Text</option>
+              <option value="yes_no">Yes or No</option>
+              <option value="number">Number</option>
+            </select>
+          </label>
           <button
             type="button"
             className="subInputBttn"
@@ -141,16 +146,18 @@ export class FBSubInput extends Component {
             Delete
           </button>
         </div>
-          {subinputs.map(subinput => {
-              return <FBSubInput
-                  key={subinput.id}
-                  object={subinput}
-                  updateFunction={updateFunction}
-                  connectedDb={connectedDb}
-                  parentType={type}
-                  parent={parent}
-              />
-          })}
+        {subinputs.map(subinput => {
+          return (
+            <FBSubInput
+              key={subinput.id}
+              object={subinput}
+              updateFunction={updateFunction}
+              connectedDb={connectedDb}
+              parentType={type}
+              parent={parent}
+            />
+          );
+        })}
       </div>
     );
   }

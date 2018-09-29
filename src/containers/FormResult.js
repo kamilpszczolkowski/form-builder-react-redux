@@ -4,24 +4,23 @@ import * as inputsSelectors from "../store/inputs/reducer";
 import { inputUpdate } from "../store/inputs/actions";
 import { FRInput } from "../components/FRInput";
 
-
 class FormResult extends Component {
   render() {
-      const { inputs, connectedDb, inputUpdate} = this.props;
+    const { inputs, connectedDb, inputUpdate } = this.props;
     return (
-      <div>
+      <form>
         <h2>Result form</h2>
-          {inputs.map(input => {
-              return (
-                  <FRInput
-                      key={input.id}
-                      object={input}
-                      updateFunction={inputUpdate}
-                      connectedDb={connectedDb}
-                  />
-              );
-          })}
-      </div>
+        {inputs.map(input => {
+          return (
+            <FRInput
+              key={input.id}
+              object={input}
+              updateFunction={inputUpdate}
+              connectedDb={connectedDb}
+            />
+          );
+        })}
+      </form>
     );
   }
 }

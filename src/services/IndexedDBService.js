@@ -1,24 +1,32 @@
+import * as DBErrors from "./IndexedDBErrors";
+
+const objectStoreName = "inputs";
+
 export class IndexedDBService {
   static openDB = callbackFcn => {
-    let request = window.indexedDB.open("FormBuilderDB", 1);
-    request.onerror = function() {
-      alert("Error while opening the database");
-    };
-    request.onsuccess = function() {
-      let objectStore = request.result
-        .transaction("inputs")
-        .objectStore("inputs")
-        .getAll();
-      objectStore.onsuccess = function(event) {
-        callbackFcn(request.result, event.target.result);
+    if (!window.indexedDB) {
+      window.alert(DBErrors.NoIndexedDBSupport);
+    } else {
+      let request = window.indexedDB.open("FormBuilderDB", 1);
+      request.onerror = () => {
+        alert(DBErrors.ErorrOpenDB);
       };
-      objectStore.onerror = function() {
-        alert("Error while reading from the database");
+      request.onsuccess = () => {
+        let objectStore = request.result
+          .transaction(objectStoreName)
+          .objectStore(objectStoreName)
+          .getAll();
+        objectStore.onsuccess = () => {
+          callbackFcn(request.result, event.target.result);
+        };
+        objectStore.onerror = () => {
+          alert(DBErrors.ErorrReadDB);
+        };
       };
-    };
-    request.onupgradeneeded = function(event) {
-      event.target.result.createObjectStore("inputs", { keyPath: "id" });
-    };
+      request.onupgradeneeded = () => {
+        event.target.result.createObjectStore(objectStoreName, { keyPath: "id" });
+      };
+    }
   };
 
   static addInput = (dbConnected, inputs, callbackFcn) => {
@@ -30,8 +38,8 @@ export class IndexedDBService {
     }
 
     let request = dbConnected
-      .transaction(["inputs"], "readwrite")
-      .objectStore("inputs")
+      .transaction([objectStoreName], "readwrite")
+      .objectStore(objectStoreName)
       .add({
         id: newId,
         question: "",
@@ -40,69 +48,69 @@ export class IndexedDBService {
         subinputs: []
       });
 
-    request.onsuccess = function() {
+    request.onsuccess = () => {
       let objectStore = dbConnected
-        .transaction("inputs")
-        .objectStore("inputs")
+        .transaction(objectStoreName)
+        .objectStore(objectStoreName)
         .getAll();
-      objectStore.onsuccess = function(event) {
+      objectStore.onsuccess = event => {
         callbackFcn(event.target.result);
       };
-      objectStore.onerror = function() {
-        alert("Error while reading from the database");
+      objectStore.onerror = () => {
+        alert(DBErrors.ErorrReadDB);
       };
     };
 
-    request.onerror = function() {
-      alert("Unable to add data to database");
+    request.onerror = () => {
+      alert(DBErrors.ErrorAddData);
     };
   };
 
-  static updateInput = function(dbConnected, inputData, callbackFcn) {
+  static updateInput = (dbConnected, inputData, callbackFcn) => {
     let request = dbConnected
-      .transaction(["inputs"], "readwrite")
-      .objectStore("inputs")
+      .transaction([objectStoreName], "readwrite")
+      .objectStore(objectStoreName)
       .put(inputData);
 
-    request.onsuccess = function() {
+    request.onsuccess = () => {
       let objectStore = dbConnected
-        .transaction("inputs")
-        .objectStore("inputs")
+        .transaction(objectStoreName)
+        .objectStore(objectStoreName)
         .getAll();
-      objectStore.onsuccess = function(event) {
+      objectStore.onsuccess = event => {
         callbackFcn(event.target.result);
       };
-      objectStore.onerror = function() {
-        alert("Error while reading from the database");
+      objectStore.onerror = () => {
+        alert(DBErrors.ErorrReadDB);
       };
     };
 
-    request.onerror = function() {
-      alert("Error while updating data");
+    request.onerror = () => {
+      alert(DBErrors.ErrorUpdateData);
     };
   };
 
-  static deleteInput = function(dbConnected, inputId, callbackFcn) {
+  static deleteInput = (dbConnected, inputId, callbackFcn) => {
     let request = dbConnected
-      .transaction(["inputs"], "readwrite")
-      .objectStore("inputs")
+      .transaction([objectStoreName], "readwrite")
+      .objectStore(objectStoreName)
       .delete(inputId);
 
-    request.onsuccess = function() {
+    request.onsuccess = () => {
       let objectStore = dbConnected
-        .transaction("inputs")
-        .objectStore("inputs")
+        .transaction(objectStoreName)
+        .objectStore(objectStoreName)
         .getAll();
-      objectStore.onsuccess = function(event) {
+      objectStore.onsuccess = event => {
         callbackFcn(event.target.result);
       };
-      objectStore.onerror = function() {
-        alert("Error while reading from the database");
+      objectStore.onerror = () => {
+        alert(DBErrors.ErorrReadDB);
       };
     };
 
-    request.onerror = function() {
-      alert("Error while updating data");
+    request.onerror = () => {
+      alert(DBErrors.ErrorUpdateData);
     };
   };
 }

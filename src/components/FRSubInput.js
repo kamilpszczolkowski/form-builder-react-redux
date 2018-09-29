@@ -2,20 +2,6 @@ import React, { Component } from "react";
 import { FormService } from "../services/FormService";
 
 export class FRSubInput extends Component {
-  SubVisibleHelperFunc() {
-    const { parent, object } = this.props;
-    if (parent.type === "text" || parent.type === "yes_no") {
-      return parent.value === object.conditionValue;
-    }
-
-    if (object.condition === "equals") {
-      return parent.value === object.conditionValue;
-    } else if (object.condition === "greater") {
-      return parent.value > object.conditionValue;
-    }
-    return parent.value < object.conditionValue;
-  }
-
   handleChange(type, event) {
     const { object, origin, updateFunction, connectedDb } = this.props;
 
@@ -78,13 +64,15 @@ export class FRSubInput extends Component {
 
   render() {
     const { question, subinputs } = this.props.object;
-    const { object, connectedDb, updateFunction, origin } = this.props;
-    if (this.SubVisibleHelperFunc()) {
+    const { object, connectedDb, updateFunction, origin, parent } = this.props;
+    if (FormService.isInputVisible(parent, object)) {
       return (
         <div>
           <div className="frInput">
-            <span className="frQuestion">{question}</span>
-            {this.inputTypeHelperFunc()}
+            <label>
+              <span className="frQuestion">{question}</span>
+              {this.inputTypeHelperFunc()}
+            </label>
           </div>
           {subinputs.map(subinput => {
             return (

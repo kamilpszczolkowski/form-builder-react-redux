@@ -5,7 +5,7 @@ export const openDatabase = () => {
   return dispatch => {
     IndexedDBService.openDB((db, inputs) => {
       dispatch({
-        type: types.OPEN_DATABASE,
+        type: types.DATABASE_OPENED,
         payload: { db, inputs }
       });
     });

@@ -14,8 +14,6 @@ export class FormService {
     let conditionValue = "";
     if (parentType === "yes_no") {
       conditionValue = "yes";
-    } else if (parentType === "number") {
-      conditionValue = 0;
     }
 
     newSubInputs.push({
@@ -37,15 +35,6 @@ export class FormService {
       for (let i = 0; i < array.length; i++) {
         if (array[i].id === id) {
           array[i][type] = value;
-
-          if (type === "type" && array[i].subinputs) {
-              for(let j = 0; j < array[i].subinputs.length; j++){
-                  if(value === "text") array[i].subinputs[j].conditionValue = '';
-                  if(value === "yes_no")  array[i].subinputs[j].conditionValue = 'yes';
-                  if(value === "number") array[i].subinputs[j].conditionValue = 0;
-              }
-          }
-
           break;
         } else {
           if (array[i].subinputs.length) {
@@ -115,5 +104,17 @@ export class FormService {
 
     searchSubInput(newParent.subinputs);
     callbackFcn(newParent);
+  };
+
+  static isInputVisible = (parent, object) => {
+    if (parent.type === "text" || parent.type === "yes_no") {
+      return parent.value === object.conditionValue;
+    }
+    if (object.condition === "equals") {
+      return parent.value === object.conditionValue;
+    } else if (object.condition === "greater") {
+      return parent.value > object.conditionValue;
+    }
+    return parent.value < object.conditionValue;
   };
 }
